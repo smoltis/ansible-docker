@@ -1,0 +1,18 @@
+---
+- name: "Test Playbook - Play 1"
+  hosts: all
+  tasks:
+    - name: "get hostname on all"
+      command: hostname
+
+    - name: "display variable"
+      command: echo {{ some_var }}
+      register: "output_echo"
+    
+    - debug: var=output_echo.stdout_lines
+    
+    - name: "just execute a ls -lrt command"
+      shell: "ls -lrt"
+      register: "output"
+
+    - debug: var=output.stdout_lines
